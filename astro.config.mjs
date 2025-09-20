@@ -32,9 +32,7 @@ export default defineConfig({
   build: {
     assets: 'assets',
     // Inline small stylesheets to reduce render-blocking
-    inlineStylesheets: 'always',
-    // Enable asset optimization for better caching
-    assetsPrefix: 'https://ocmind.tech/assets/'
+    inlineStylesheets: 'auto',
   },
   
   // Optimizaciones de performance adicionales

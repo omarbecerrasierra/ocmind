@@ -85,9 +85,6 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
     <!-- Preload critical font file with latin subset (smaller size) -->
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin />
     
-    <!-- Module preload for critical CSS -->
-    <link rel="modulepreload" href="/src/styles/vars.css" />
-    
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
       {
@@ -333,7 +330,253 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
 </html>
 
 <style is:global>
-  @import '../styles/vars.css';
+  /* EDITAR AQUÍ: Paleta de colores y variables CSS de OCMIND */
+  /* Google Fonts moved to HTML head for better performance */
+
+  :root {
+    /* Colores principales */
+    --bg: #0B0F1A;      /* fondo carbón */
+    --text: #F5F7FA;    /* texto claro */
+    --muted: #94A3B8;   /* gris pizarra para secundarios */
+    --accent: #F59E0B;  /* ámbar OCMIND */
+    --accent2: #2563EB; /* azul corporativo (usar con moderación) */
+    
+    /* Variables de layout */
+    --radius: 16px;
+    --maxw: 1200px;
+    --gap: 24px;
+    --shadow: 0 8px 30px rgba(0,0,0,.12);
+    
+    /* Tipografía */
+    --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-size-xs: 0.75rem;    /* 12px */
+    --font-size-sm: 0.875rem;   /* 14px */
+    --font-size-base: 1rem;     /* 16px */
+    --font-size-lg: 1.125rem;   /* 18px */
+    --font-size-xl: 1.25rem;    /* 20px */
+    --font-size-2xl: 1.5rem;    /* 24px */
+    --font-size-3xl: 1.875rem;  /* 30px */
+    --font-size-4xl: 2.25rem;   /* 36px */
+    --font-size-5xl: 3rem;      /* 48px */
+    
+    /* Espaciado */
+    --space-1: 0.25rem;  /* 4px */
+    --space-2: 0.5rem;   /* 8px */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-6: 1.5rem;   /* 24px */
+    --space-8: 2rem;     /* 32px */
+    --space-12: 3rem;    /* 48px */
+    --space-16: 4rem;    /* 64px */
+    --space-20: 5rem;    /* 80px */
+    --space-24: 6rem;    /* 96px */
+    
+    /* Transiciones */
+    --transition: 200ms ease;
+  }
+
+  /* Reset y base styles optimized for performance */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Optimize for LCP */
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--font-family);
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Prevent font loading flicker */
+    font-display: swap;
+    /* Optimize rendering */
+    contain: layout style paint;
+  }
+
+  /* Container base */
+  .container {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding-inline: var(--gap);
+  }
+
+  /* Botones base */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    border: none;
+    border-radius: var(--radius);
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #D97706;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    /* Use transform for better performance */
+    will-change: transform;
+  }
+
+  /* Performance optimizations */
+  img, picture, video, iframe {
+    /* Prevent layout shift */
+    max-width: 100%;
+    height: auto;
+    /* Optimize rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Optimize animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Critical path optimization */
+  .above-fold {
+    contain: layout style paint;
+  }
+
+  /* Optimize for Core Web Vitals */
+  [data-loading] {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+  }
+
+  [data-loaded] {
+    opacity: 1;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--text);
+    border: 2px solid var(--muted);
+  }
+
+  .btn-secondary:hover,
+  .btn-secondary:focus {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Focus states para accesibilidad */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* Títulos */
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+  }
+
+  h2 {
+    font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-4xl));
+  }
+
+  h3 {
+    font-size: var(--font-size-xl);
+  }
+
+  /* Párrafos */
+  p {
+    color: var(--muted);
+    margin-bottom: var(--space-4);
+  }
+
+  /* Links */
+  a {
+    color: var(--accent);
+    transition: color var(--transition);
+  }
+
+  a:hover,
+  a:focus {
+    color: #D97706;
+  }
+
+  /* Utilidades responsivas */
+  @media (max-width: 768px) {
+    .container {
+      padding-inline: var(--space-4);
+    }
+    
+    .btn {
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  /* Grid y flex utilities */
+  .grid {
+    display: grid;
+    gap: var(--gap);
+  }
+
+  .flex {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
   
   /* EDITAR AQUÍ: Estilos adicionales globales */
   body.user-is-tabbing *:focus {
