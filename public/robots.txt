@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://ocmind.com/sitemap.xml
+Sitemap: https://ocmind.tech/sitemap-index.xml
 
 # Crawl-delay para ser amigable con servidores
 Crawl-delay: 1
