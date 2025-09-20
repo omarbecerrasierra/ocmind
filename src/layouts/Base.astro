@@ -68,13 +68,24 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
     <meta property="business:contact_data:phone_number" content="+56964567998" />
     <meta property="business:contact_data:email" content="ocmindconsulting@gmail.com" />
     
-    <!-- Preconnect y preload para optimización -->
+    <!-- Performance optimizations: Preconnect, preload and font optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+    
+    <!-- Critical resource preloads -->
     <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
     
-    <!-- Precarga de recursos críticos -->
+    <!-- Optimized font loading with variable font and subset -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&display=swap&subset=latin" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&display=swap&subset=latin" /></noscript>
+    
+    <!-- Preload critical font file with latin subset (smaller size) -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Module preload for critical CSS -->
     <link rel="modulepreload" href="/src/styles/vars.css" />
     
     <!-- Schema.org JSON-LD -->
@@ -212,9 +223,98 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
         }
       }
     </script>
+    
+    <!-- Critical CSS inlined for faster rendering -->
+    <style>
+      /* Critical styles - font family fallback and basic layout */
+      :root {
+        --bg: #0B0F1A;
+        --text: #F5F7FA;
+        --muted: #94A3B8;
+        --accent: #F59E0B;
+        --accent2: #2563EB;
+        --radius: 16px;
+        --maxw: 1200px;
+        --gap: 24px;
+        --font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --transition: 200ms ease;
+      }
+      
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: var(--font-family);
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        font-size: 1rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .container {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding-inline: var(--gap);
+      }
+      
+      /* Font loading optimization - prevent FOUT */
+      body {
+        font-display: swap;
+      }
+      
+      /* Font loading optimization with fallback stack */
+      html:not(.fonts-loaded) body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      }
+      
+      /* Optimize font rendering */
+      body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+      
+      /* Reduce CLS by setting font-size-adjust */
+      .fonts-loaded body {
+        font-size-adjust: 0.5;
+      }
+    </style>
   </head>
   <body>
     <slot />
+    
+    <!-- Performance optimization scripts -->
+    <script>
+      // Font loading strategy to prevent FOUT
+      (function() {
+        if (sessionStorage.fontsLoaded) {
+          document.documentElement.classList.add('fonts-loaded');
+          return;
+        }
+        
+        if ('fonts' in document) {
+          document.fonts.ready.then(function() {
+            document.documentElement.classList.add('fonts-loaded');
+            sessionStorage.fontsLoaded = true;
+          });
+        } else {
+          // Fallback for older browsers
+          setTimeout(function() {
+            document.documentElement.classList.add('fonts-loaded');
+            sessionStorage.fontsLoaded = true;
+          }, 100);
+        }
+      })();
+    </script>
     
     <!-- Scripts para islands -->
     <script>

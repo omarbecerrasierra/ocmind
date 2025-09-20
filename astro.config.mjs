@@ -31,7 +31,33 @@ export default defineConfig({
   // Optimiza para producción
   build: {
     assets: 'assets',
-    inlineStylesheets: 'auto'
+    // Inline small stylesheets to reduce render-blocking
+    inlineStylesheets: 'always',
+    // Enable asset optimization for better caching
+    assetsPrefix: 'https://ocmind.tech/assets/'
+  },
+  
+  // Optimizaciones de performance adicionales
+  vite: {
+    build: {
+      // Optimize chunks for better caching
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+          assetFileNames: 'assets/[name]-[hash][extname]',
+          chunkFileNames: 'assets/[name]-[hash].js',
+          entryFileNames: 'assets/[name]-[hash].js'
+        }
+      },
+      // Enable CSS code splitting
+      cssCodeSplit: true,
+      // Minify CSS
+      cssMinify: true
+    },
+    // Optimize for production
+    define: {
+      'process.env.NODE_ENV': '"production"'
+    }
   },
   
   // Configuraciones de SEO adicionales

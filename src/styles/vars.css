@@ -1,5 +1,5 @@
 /* EDITAR AQUÍ: Paleta de colores y variables CSS de OCMIND */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* Google Fonts moved to HTML head for better performance */
 
 :root {
   /* Colores principales */
@@ -43,8 +43,8 @@
   --transition: 200ms ease;
 }
 
-/* Reset y base styles */
-* {
+/* Reset y base styles optimized for performance */
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -52,6 +52,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Optimize for LCP */
+  overflow-x: hidden;
 }
 
 body {
@@ -62,6 +64,11 @@ body {
   font-size: var(--font-size-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent font loading flicker */
+  font-display: swap;
+  /* Optimize rendering */
+  contain: layout style paint;
 }
 
 /* Container base */
@@ -98,6 +105,46 @@ body {
   background-color: #D97706;
   transform: translateY(-2px);
   box-shadow: var(--shadow);
+  /* Use transform for better performance */
+  will-change: transform;
+}
+
+/* Performance optimizations */
+img, picture, video, iframe {
+  /* Prevent layout shift */
+  max-width: 100%;
+  height: auto;
+  /* Optimize rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Optimize animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Critical path optimization */
+.above-fold {
+  contain: layout style paint;
+}
+
+/* Optimize for Core Web Vitals */
+[data-loading] {
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+[data-loaded] {
+  opacity: 1;
 }
 
 .btn-secondary {
