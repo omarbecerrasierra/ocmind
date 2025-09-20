@@ -1,0 +1,23 @@
+# robots.txt para OCMIND
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://ocmind.com/sitemap.xml
+
+# Crawl-delay para ser amigable con servidores
+Crawl-delay: 1
+
+# Permitir acceso a recursos importantes
+Allow: /favicon.svg
+Allow: /og-image.jpg
+Allow: /_astro/
+
+# No indexar archivos administrativos
+Disallow: /.well-known/
+Disallow: /admin/
+Disallow: /api/
+
+# Información adicional
+# Host: https://ocmind.com
+# Para más información contactar: ocmindconsulting@gmail.com

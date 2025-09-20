@@ -54,7 +54,7 @@ const services = [
 
         <!-- Servicios destacados -->
         <div class="hero-services animate-fade-in-up">
-          <h2 class="sr-only">Servicios principales</h2>
+          <h2 class="services-title">Nuestros servicios especializados</h2>
           <ul class="services-list">
             {services.map((service, index) => (
               <li class="service-item" style={`animation-delay: ${(index + 1) * 0.1}s`}>
@@ -183,6 +183,13 @@ const services = [
 
   .hero-services {
     margin-top: var(--space-8);
+  }
+
+  .services-title {
+    font-size: var(--font-size-lg);
+    color: var(--text);
+    margin-bottom: var(--space-6);
+    font-weight: 600;
   }
 
   .services-list {

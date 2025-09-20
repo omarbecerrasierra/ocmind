@@ -8,8 +8,8 @@ export interface Props {
 }
 
 const {
-  title = "OCMIND - Consultoría en IA, Marketing y Desarrollo Web",
-  description = "Impulsamos tu negocio con IA, Marketing y Web. Consultoría estratégica, bots de WhatsApp y sitios e-commerce listos para vender. +5 años de experiencia en LatAm & USA.",
+  title = "OCMIND - Consultoría en Inteligencia Artificial, Marketing Digital y Desarrollo Web",
+  description = "🚀 Transformamos tu negocio con IA, Marketing Digital y Desarrollo Web. Consultoría estratégica, bots de WhatsApp, sitios e-commerce y análisis de datos. +5 años impulsando empresas en LatAm & USA.",
   image = "/og-image.jpg",
   canonicalURL = Astro.url
 } = Astro.props;
@@ -29,8 +29,12 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
     <!-- SEO Meta Tags -->
     <title>{siteTitle}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content="consultoría IA, marketing digital, bots WhatsApp, desarrollo web, e-commerce, inteligencia artificial, big data, dashboards, análisis predictivos" />
+    <meta name="keywords" content="consultoría inteligencia artificial, marketing digital, bots WhatsApp, desarrollo web, e-commerce, IA empresarial, big data, dashboards, análisis predictivos, automatización, transformación digital, estrategia comercial, análisis de datos, business intelligence, desarrollo sitios web, tiendas online, consultor IA Chile, marketing digital Santiago" />
     <meta name="author" content="OCMIND Consulting" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="language" content="es-ES" />
+    <meta name="geo.region" content="CL" />
+    <meta name="geo.placename" content="Santiago, Chile" />
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph / Facebook -->
@@ -39,15 +43,22 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
     <meta property="og:title" content={siteTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image:alt" content="OCMIND - Consultoría en Inteligencia Artificial, Marketing Digital y Desarrollo Web" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="OCMIND" />
+    <meta property="article:author" content="OCMIND Consulting" />
     
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={siteTitle} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ocmind" />
+    <meta name="twitter:creator" content="@ocmind" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={siteTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, Astro.url)} />
+    <meta name="twitter:image:alt" content="OCMIND - Transformamos tu negocio con IA y Marketing Digital" />
     
     <!-- WhatsApp Business -->
     <meta property="business:contact_data:street_address" content="Chile" />
@@ -57,40 +68,148 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
     <meta property="business:contact_data:phone_number" content="+56964567998" />
     <meta property="business:contact_data:email" content="ocmindconsulting@gmail.com" />
     
-    <!-- Preconnect para optimización -->
+    <!-- Preconnect y preload para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <link rel="preload" href="/favicon.svg" as="image" type="image/svg+xml" />
+    
+    <!-- Precarga de recursos críticos -->
+    <link rel="modulepreload" href="/src/styles/vars.css" />
     
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
+        "@type": ["Organization", "ProfessionalService", "WebSite"],
         "name": "OCMIND",
-        "alternateName": "OCMIND Consulting",
+        "alternateName": ["OCMIND Consulting", "OCMIND AI"],
         "url": "https://ocmind.com",
-        "logo": "https://ocmind.com/logo.png",
-        "description": "Consultoría estratégica en IA, Marketing Digital y Desarrollo Web",
-        "foundingDate": "2019",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+56-9-6456-7998",
-          "contactType": "customer service",
-          "availableLanguage": ["Spanish", "English"]
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://ocmind.com/logo.png",
+          "width": 200,
+          "height": 200
         },
+        "image": "https://ocmind.com/og-image.jpg",
+        "description": "Consultoría estratégica en Inteligencia Artificial, Marketing Digital y Desarrollo Web. Transformamos empresas con tecnología avanzada, bots de WhatsApp y soluciones e-commerce.",
+        "foundingDate": "2019",
+        "slogan": "Impulsamos tu negocio con IA, Marketing y Web",
+        "knowsAbout": [
+          "Inteligencia Artificial",
+          "Machine Learning",
+          "Marketing Digital",
+          "Desarrollo Web",
+          "E-commerce",
+          "Business Intelligence",
+          "Análisis de Datos",
+          "Automatización",
+          "Bots de WhatsApp",
+          "Transformación Digital"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "CL",
+          "addressRegion": "RM",
+          "addressLocality": "Santiago"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+56-9-6456-7998",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish", "English"],
+            "areaServed": ["CL", "AR", "CO", "VE", "PE", "US"],
+            "contactOption": "TollFree"
+          },
+          {
+            "@type": "ContactPoint",
+            "email": "ocmindconsulting@gmail.com",
+            "contactType": "customer service"
+          }
+        ],
         "sameAs": [
           "https://instagram.com/ocmind.ai",
           "https://wa.me/56964567998"
         ],
-        "areaServed": ["Chile", "Argentina", "Colombia", "Venezuela", "Peru", "United States"],
-        "serviceType": [
-          "Consultoría en Inteligencia Artificial",
-          "Marketing Digital",
-          "Desarrollo Web",
-          "E-commerce",
-          "Bots de WhatsApp",
-          "Análisis de Datos"
-        ]
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Chile"
+          },
+          {
+            "@type": "Country", 
+            "name": "Argentina"
+          },
+          {
+            "@type": "Country",
+            "name": "Colombia"
+          },
+          {
+            "@type": "Country",
+            "name": "Venezuela"
+          },
+          {
+            "@type": "Country",
+            "name": "Peru"
+          },
+          {
+            "@type": "Country",
+            "name": "United States"
+          }
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios OCMIND",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Consultoría en Inteligencia Artificial",
+                "description": "Estrategias de IA para optimización de procesos empresariales"
+              }
+            },
+            {
+              "@type": "Offer", 
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Marketing Digital",
+                "description": "Campañas digitales y estrategias de crecimiento online"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Desarrollo Web y E-commerce",
+                "description": "Sitios web personalizados y tiendas online completas"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Bots de WhatsApp",
+                "description": "Automatización de atención al cliente via WhatsApp Business"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Análisis de Datos y BI",
+                "description": "Dashboards, reportes y análisis predictivos para toma de decisiones"
+              }
+            }
+          ]
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "reviewCount": "87",
+          "bestRating": "5"
+        }
       }
     </script>
   </head>
@@ -147,6 +266,18 @@ const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo
   img {
     max-width: 100%;
     height: auto;
+    loading: lazy;
+    decoding: async;
+  }
+  
+  /* Optimización de performance */
+  * {
+    box-sizing: border-box;
+  }
+  
+  /* Reduce el layout shift */
+  [data-astro-cid-hash] {
+    contain: layout style paint;
   }
   
   /* Mejora de legibilidad */

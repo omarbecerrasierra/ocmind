@@ -1,0 +1,24 @@
+<!-- Archivo placeholder para og-image.jpg -->
+<!-- 
+IMPORTANTE: Debes crear una imagen real de 1200x630 píxeles con:
+
+Contenido sugerido:
+- Logo de OCMIND
+- Texto: "OCMIND - Consultoría en IA, Marketing y Desarrollo Web"
+- Elementos gráficos relacionados con tecnología
+- Colores de tu marca (basados en tus CSS vars)
+- Fondo atractivo
+
+Herramientas recomendadas:
+- Canva
+- Figma  
+- Adobe Illustrator
+- GIMP (gratuito)
+
+Guarda como: public/og-image.jpg
+Tamaño: 1200x630px
+Formato: JPG o PNG
+Calidad: Alta pero optimizada (<200KB idealmente)
+-->
+
+Este archivo debe ser reemplazado por una imagen real.
