@@ -1,0 +1,557 @@
+---
+/* EDITAR AQUÍ: Información de contacto de OCMIND */
+const contactInfo = {
+  phone: "+56 9 6456 7998",
+  whatsapp: "https://wa.me/56964567998",
+  email: "OCMINDCONSULTING@GMAIL.COM",
+  instagram: "@OCMIND.AI",
+  instagramUrl: "https://instagram.com/ocmind.ai"
+};
+
+const formFields = [
+  {
+    name: "name",
+    label: "Nombre completo",
+    type: "text",
+    required: true,
+    placeholder: "Tu nombre"
+  },
+  {
+    name: "email", 
+    label: "Email",
+    type: "email",
+    required: true,
+    placeholder: "tu@email.com"
+  },
+  {
+    name: "company",
+    label: "Empresa",
+    type: "text",
+    required: false,
+    placeholder: "Nombre de tu empresa (opcional)"
+  },
+  {
+    name: "service",
+    label: "Servicio de interés",
+    type: "select",
+    required: true,
+    options: [
+      { value: "", label: "Selecciona un servicio" },
+      { value: "consultoria", label: "Consultoría Estratégica en IA" },
+      { value: "bots", label: "Bots de WhatsApp/Redes Sociales" },
+      { value: "web", label: "Desarrollo Web/E-commerce" },
+      { value: "marketing", label: "Marketing Digital" },
+      { value: "datos", label: "Análisis de Datos/BI" },
+      { value: "otro", label: "Otro (especificar en mensaje)" }
+    ]
+  },
+  {
+    name: "message",
+    label: "Mensaje",
+    type: "textarea",
+    required: true,
+    placeholder: "Cuéntanos sobre tu proyecto y objetivos..."
+  }
+];
+---
+
+<section class="contact" id="contacto">
+  <div class="container">
+    <div class="contact-header">
+      <h2 class="section-title">
+        ¿Listo para transformar tu negocio?
+      </h2>
+      <p class="section-subtitle">
+        Contáctanos para una asesoría gratuita y descubre cómo podemos impulsar tu crecimiento con IA, marketing y tecnología.
+      </p>
+    </div>
+
+    <div class="contact-content">
+      <!-- Contact Form -->
+      <div class="contact-form-container">
+        <form class="contact-form" data-contact-form>
+          <div class="form-header">
+            <h3 class="form-title">Solicita tu asesoría gratuita</h3>
+            <p class="form-subtitle">Te responderemos en menos de 24 horas</p>
+          </div>
+
+          <div class="form-grid">
+            {formFields.map((field) => (
+              <div class={`form-group ${field.name === 'message' ? 'form-group-full' : ''}`}>
+                <label for={field.name} class="form-label">
+                  {field.label}
+                  {field.required && <span class="required" aria-label="requerido">*</span>}
+                </label>
+                
+                {field.type === 'textarea' ? (
+                  <textarea
+                    id={field.name}
+                    name={field.name}
+                    class="form-input form-textarea"
+                    placeholder={field.placeholder}
+                    required={field.required}
+                    rows="4"
+                    aria-describedby={`${field.name}-help`}
+                  ></textarea>
+                ) : field.type === 'select' ? (
+                  <select
+                    id={field.name}
+                    name={field.name}
+                    class="form-input form-select"
+                    required={field.required}
+                    aria-describedby={`${field.name}-help`}
+                  >
+                    {field.options?.map((option) => (
+                      <option value={option.value}>{option.label}</option>
+                    ))}
+                  </select>
+                ) : (
+                  <input
+                    type={field.type}
+                    id={field.name}
+                    name={field.name}
+                    class="form-input"
+                    placeholder={field.placeholder}
+                    required={field.required}
+                    aria-describedby={`${field.name}-help`}
+                  />
+                )}
+                
+                <div id={`${field.name}-help`} class="form-help sr-only">
+                  {field.required ? 'Este campo es obligatorio' : 'Este campo es opcional'}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary btn-lg btn-full">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Enviar solicitud
+            </button>
+            
+            <p class="form-note">
+              Al enviar este formulario, aceptas que nos contactemos contigo sobre nuestros servicios.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <div class="contact-methods">
+          <h3 class="contact-methods-title">Otras formas de contacto</h3>
+          
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.473 3.297" fill="currentColor"/>
+              </svg>
+            </div>
+            <div class="contact-method-content">
+              <h4 class="contact-method-title">WhatsApp</h4>
+              <p class="contact-method-text">Respuesta inmediata</p>
+              <a 
+                href={contactInfo.whatsapp}
+                class="contact-method-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contactar por WhatsApp (abre en nueva ventana)"
+              >
+                {contactInfo.phone}
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="contact-method-content">
+              <h4 class="contact-method-title">Email</h4>
+              <p class="contact-method-text">Consultas profesionales</p>
+              <a 
+                href={`mailto:${contactInfo.email}`}
+                class="contact-method-link"
+                aria-label="Enviar email (abre cliente de correo)"
+              >
+                {contactInfo.email}
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-method-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="currentColor" stroke-width="2"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div class="contact-method-content">
+              <h4 class="contact-method-title">Instagram</h4>
+              <p class="contact-method-text">Síguenos para tips y novedades</p>
+              <a 
+                href={contactInfo.instagramUrl}
+                class="contact-method-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Seguir en Instagram (abre en nueva ventana)"
+              >
+                {contactInfo.instagram}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Banner -->
+        <div class="cta-banner">
+          <div class="cta-content">
+            <h4 class="cta-title">¿Prefieres hablar directamente?</h4>
+            <p class="cta-text">Agenda una videollamada gratuita de 30 minutos</p>
+            <a 
+              href={`${contactInfo.whatsapp}?text=Hola,%20me%20gustaría%20agendar%20una%20videollamada%20gratuita`}
+              class="btn btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Agendar videollamada
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: var(--space-20) 0;
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.03) 0%, 
+      transparent 50%, 
+      rgba(37, 99, 235, 0.03) 100%);
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title {
+    font-size: var(--font-size-3xl);
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: start;
+  }
+
+  /* Contact Form */
+  .contact-form-container {
+    background: rgba(148, 163, 184, 0.03);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .form-title {
+    font-size: var(--font-size-xl);
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
+
+  .form-subtitle {
+    color: var(--muted);
+    font-size: var(--font-size-base);
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group-full {
+    grid-column: 1 / -1;
+  }
+
+  .form-label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
+
+  .required {
+    color: var(--accent);
+    margin-left: var(--space-1);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: var(--space-2);
+    background-color: rgba(148, 163, 184, 0.05);
+    color: var(--text);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    transition: all var(--transition);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+    background-color: rgba(245, 158, 11, 0.02);
+  }
+
+  .form-input::placeholder {
+    color: var(--muted);
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-select {
+    cursor: pointer;
+  }
+
+  .form-help {
+    font-size: var(--font-size-xs);
+    color: var(--muted);
+    margin-top: var(--space-1);
+  }
+
+  .form-actions {
+    text-align: center;
+  }
+
+  .form-note {
+    font-size: var(--font-size-xs);
+    color: var(--muted);
+    margin-top: var(--space-4);
+    line-height: 1.5;
+  }
+
+  /* Contact Info */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .contact-methods-title {
+    font-size: var(--font-size-xl);
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    background: rgba(148, 163, 184, 0.03);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-method:hover {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.05);
+  }
+
+  .contact-method-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--accent), #D97706);
+    border-radius: var(--space-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bg);
+  }
+
+  .contact-method-content {
+    flex: 1;
+  }
+
+  .contact-method-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-1);
+  }
+
+  .contact-method-text {
+    font-size: var(--font-size-sm);
+    color: var(--muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .contact-method-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: var(--font-size-base);
+    transition: color var(--transition);
+  }
+
+  .contact-method-link:hover {
+    color: #D97706;
+    text-decoration: underline;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.1) 0%, 
+      rgba(37, 99, 235, 0.05) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  .cta-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
+
+  .cta-text {
+    color: var(--muted);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .contact {
+      padding: var(--space-16) 0;
+    }
+
+    .section-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+    }
+
+    .contact-form-container {
+      padding: var(--space-6);
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .contact-method {
+      padding: var(--space-4);
+      gap: var(--space-3);
+    }
+
+    .contact-method-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .cta-banner {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .form-input {
+      padding: var(--space-3);
+      font-size: var(--font-size-sm);
+    }
+
+    .contact-method {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .contact-method-icon {
+      align-self: center;
+    }
+  }
+</style>
+
+<script>
+  // Basic form handling - in a real implementation, this would integrate with a backend
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('[data-contact-form]');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        
+        // Create WhatsApp message
+        const message = `Hola, me interesa una asesoría gratuita:
+
+Nombre: ${data.name}
+Email: ${data.email}
+Empresa: ${data.company || 'No especificado'}
+Servicio: ${data.service}
+
+Mensaje:
+${data.message}`;
+
+        // Redirect to WhatsApp
+        const whatsappUrl = `https://wa.me/56964567998?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        
+        // Show success message (optional)
+        alert('¡Gracias! Te redirigimos a WhatsApp para completar tu solicitud.');
+      });
+    }
+  });
+</script>

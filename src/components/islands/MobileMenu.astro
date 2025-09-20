@@ -1,0 +1,109 @@
+---
+// Island component for mobile menu functionality
+---
+
+<div class="mobile-menu-island" data-mobile-menu-island>
+  <slot />
+</div>
+
+<script>
+  class MobileMenu {
+    private menuButton: HTMLButtonElement | null = null;
+    private mobileMenu: HTMLElement | null = null;
+    private mobileNavLinks: NodeListOf<HTMLAnchorElement> | null = null;
+
+    constructor() {
+      this.init();
+    }
+
+    init(): void {
+      // Find elements
+      this.menuButton = document.querySelector('[data-mobile-menu-toggle]');
+      this.mobileMenu = document.querySelector('[data-mobile-menu]');
+      this.mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+      if (!this.menuButton || !this.mobileMenu) return;
+
+      // Bind event listeners
+      this.menuButton.addEventListener('click', this.handleToggle.bind(this));
+      
+      // Close menu when clicking nav links
+      this.mobileNavLinks.forEach(link => {
+        link.addEventListener('click', this.closeMenu.bind(this));
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', this.handleOutsideClick.bind(this));
+      
+      // Close menu on escape key
+      document.addEventListener('keydown', this.handleKeydown.bind(this));
+    }
+
+    handleToggle(): void {
+      if (!this.menuButton || !this.mobileMenu) return;
+
+      const isOpen = this.menuButton.getAttribute('aria-expanded') === 'true';
+      const newState = !isOpen;
+      
+      // Update button state
+      this.menuButton.setAttribute('aria-expanded', newState.toString());
+      
+      // Update menu visibility
+      this.mobileMenu.setAttribute('data-mobile-menu', newState ? 'open' : '');
+      
+      // Manage body scroll
+      if (newState) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
+    closeMenu(): void {
+      if (!this.menuButton || !this.mobileMenu) return;
+
+      this.menuButton.setAttribute('aria-expanded', 'false');
+      this.mobileMenu.setAttribute('data-mobile-menu', '');
+      document.body.style.overflow = '';
+    }
+
+    handleOutsideClick(event: Event): void {
+      if (!this.menuButton || !this.mobileMenu) return;
+
+      const target = event.target as Node;
+      const isOpen = this.menuButton.getAttribute('aria-expanded') === 'true';
+      
+      if (isOpen && 
+          !this.menuButton.contains(target) && 
+          !this.mobileMenu.contains(target)) {
+        this.closeMenu();
+      }
+    }
+
+    handleKeydown(event: KeyboardEvent): void {
+      if (event.key === 'Escape') {
+        const isOpen = this.menuButton?.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          this.closeMenu();
+          this.menuButton?.focus();
+        }
+      }
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new MobileMenu();
+  });
+
+  // Re-initialize for Astro navigation
+  document.addEventListener('astro:page-load', () => {
+    new MobileMenu();
+  });
+</script>
+
+<style>
+  .mobile-menu-island {
+    display: contents;
+  }
+</style>

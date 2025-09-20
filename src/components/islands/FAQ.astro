@@ -1,0 +1,398 @@
+---
+/* EDITAR AQUÍ: Preguntas frecuentes de OCMIND */
+const faqs = [
+  {
+    id: 'faq-1',
+    question: '¿Cuánto tiempo toma implementar un bot de WhatsApp?',
+    answer: 'La implementación básica de un bot de WhatsApp toma entre 3-7 días laborables. Esto incluye configuración, programación de respuestas automáticas, integración con WhatsApp Business API, y capacitación para su uso. Para bots más complejos con IA avanzada, el tiempo puede extenderse a 2-3 semanas.'
+  },
+  {
+    id: 'faq-2', 
+    question: '¿Qué tipo de soporte incluyen los planes?',
+    answer: 'Todos nuestros planes incluyen soporte técnico especializado. El plan Start incluye soporte por email con respuesta en 24-48 horas. Growth incluye soporte prioritario por WhatsApp con respuesta en 2-6 horas. El plan Pro incluye soporte 24/7 con respuesta inmediata y un consultor dedicado para resolver cualquier inconveniente.'
+  },
+  {
+    id: 'faq-3',
+    question: '¿Cómo se integran los medios de pago en el e-commerce?',
+    answer: 'Integramos múltiples pasarelas de pago según tu ubicación: PayPal, Stripe, MercadoPago, Webpay (Chile), PayU (Colombia), y otros procesadores locales. La integración incluye configuración de SSL, pruebas de seguridad, manejo de devoluciones, y compliance con regulaciones financieras locales. El proceso toma 5-10 días después del desarrollo base.'
+  },
+  {
+    id: 'faq-4',
+    question: '¿Qué métricas y reportes proporcionan?',
+    answer: 'Proporcionamos dashboards completos con métricas clave: conversiones, ROI de campañas, engagement en redes sociales, rendimiento de bots, análisis de ventas, ratios financieros, y KPIs personalizados. Los reportes se entregan mensualmente con análisis predictivos y recomendaciones estratégicas para optimizar resultados.'
+  },
+  {
+    id: 'faq-5',
+    question: '¿Los activos digitales creados son de mi propiedad?',
+    answer: 'Sí, absolutamente. Todos los activos digitales desarrollados son 100% de tu propiedad: código fuente, diseños, contenido, bases de datos, configuraciones, y documentación técnica. Al finalizar el proyecto, entregas todos los archivos, credenciales y documentación necesaria para que mantengas control total sobre tus activos.'
+  },
+  {
+    id: 'faq-6',
+    question: '¿Ofrecen servicios personalizados fuera de los planes?',
+    answer: 'Por supuesto. Además de nuestros planes estándar, desarrollamos soluciones completamente personalizadas: sistemas ERP, CRM customizados, integraciones API específicas, análisis de big data, machine learning personalizado, y automatizaciones complejas. Cada proyecto se cotiza individualmente según requerimientos y complejidad.'
+  }
+];
+---
+
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <h2 class="section-title">
+        Preguntas frecuentes
+      </h2>
+      <p class="section-subtitle">
+        Resuelve tus dudas sobre nuestros servicios y procesos. Si no encuentras la respuesta que buscas, contáctanos directamente.
+      </p>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-list" data-faq-container>
+        {faqs.map((faq, index) => (
+          <div 
+            class="faq-item"
+            style={`animation-delay: ${index * 0.1}s`}
+            data-faq-item
+          >
+            <button 
+              class="faq-question"
+              type="button" 
+              aria-expanded="false"
+              aria-controls={faq.id}
+              data-faq-trigger
+            >
+              <span class="faq-question-text">{faq.question}</span>
+              <div class="faq-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </button>
+            
+            <div 
+              class="faq-answer"
+              id={faq.id}
+              data-faq-content
+            >
+              <div class="faq-answer-inner">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="faq-cta">
+        <div class="faq-cta-content">
+          <h3 class="faq-cta-title">¿Aún tienes dudas?</h3>
+          <p class="faq-cta-text">
+            Nuestro equipo está disponible para resolver cualquier pregunta específica sobre tu proyecto.
+          </p>
+          <a 
+            href="https://wa.me/56964567998?text=Hola,%20tengo%20algunas%20preguntas%20sobre%20sus%20servicios"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.60556 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0813 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91866 21 11V11.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Pregúntanos por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding: var(--space-20) 0;
+    background: linear-gradient(180deg, 
+      transparent 0%, 
+      rgba(148, 163, 184, 0.02) 50%, 
+      transparent 100%);
+  }
+
+  .faq-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title {
+    font-size: var(--font-size-3xl);
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-list {
+    margin-bottom: var(--space-16);
+  }
+
+  .faq-item {
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: var(--radius);
+    margin-bottom: var(--space-6);
+    background: rgba(148, 163, 184, 0.02);
+    transition: all var(--transition);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+    overflow: hidden;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: rgba(245, 158, 11, 0.03);
+  }
+
+  .faq-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-6) var(--space-8);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text);
+    transition: all var(--transition);
+  }
+
+  .faq-question:hover {
+    color: var(--accent);
+  }
+
+  .faq-question:focus {
+    outline: none;
+    color: var(--accent);
+  }
+
+  .faq-question-text {
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    flex-shrink: 0;
+    margin-left: var(--space-4);
+    color: var(--accent);
+    transition: transform var(--transition);
+  }
+
+  .faq-question[aria-expanded="true"] .faq-icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .faq-answer.expanded {
+    max-height: 500px;
+    transition: max-height 0.4s ease-in;
+  }
+
+  .faq-answer-inner {
+    padding: 0 var(--space-8) var(--space-6);
+  }
+
+  .faq-answer p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: var(--font-size-base);
+    margin: 0;
+  }
+
+  /* FAQ CTA */
+  .faq-cta {
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.1) 0%, 
+      rgba(37, 99, 235, 0.05) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--radius);
+    padding: var(--space-12);
+    text-align: center;
+  }
+
+  .faq-cta-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .faq-cta-text {
+    color: var(--muted);
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .faq {
+      padding: var(--space-16) 0;
+    }
+
+    .section-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .faq-question {
+      padding: var(--space-5) var(--space-6);
+      font-size: var(--font-size-base);
+    }
+
+    .faq-answer-inner {
+      padding: 0 var(--space-6) var(--space-5);
+    }
+
+    .faq-cta {
+      padding: var(--space-8);
+    }
+
+    .faq-cta-title {
+      font-size: var(--font-size-xl);
+    }
+
+    .faq-cta-text {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .faq-question {
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--font-size-sm);
+    }
+
+    .faq-question-text {
+      line-height: 1.5;
+    }
+
+    .faq-icon {
+      margin-left: var(--space-2);
+    }
+
+    .faq-answer-inner {
+      padding: 0 var(--space-5) var(--space-4);
+    }
+
+    .faq-answer p {
+      font-size: var(--font-size-sm);
+    }
+  }
+</style>
+
+<script>
+  class FAQAccordion {
+    constructor() {
+      this.container = document.querySelector('[data-faq-container]');
+      this.init();
+    }
+
+    init() {
+      if (!this.container) return;
+
+      const triggers = this.container.querySelectorAll('[data-faq-trigger]');
+      
+      triggers.forEach((trigger) => {
+        trigger.addEventListener('click', this.handleToggle.bind(this));
+        trigger.addEventListener('keydown', this.handleKeydown.bind(this));
+      });
+    }
+
+    handleToggle(event) {
+      const trigger = event.currentTarget;
+      const content = trigger.nextElementSibling;
+      const isExpanded = trigger.getAttribute('aria-expanded') === 'true';
+
+      // Toggle current item
+      trigger.setAttribute('aria-expanded', !isExpanded);
+      
+      if (isExpanded) {
+        content.classList.remove('expanded');
+      } else {
+        content.classList.add('expanded');
+      }
+
+      // Optional: Close other items (uncomment for accordion behavior)
+      /*
+      const allTriggers = this.container.querySelectorAll('[data-faq-trigger]');
+      allTriggers.forEach((otherTrigger) => {
+        if (otherTrigger !== trigger) {
+          const otherContent = otherTrigger.nextElementSibling;
+          otherTrigger.setAttribute('aria-expanded', 'false');
+          otherContent.classList.remove('expanded');
+        }
+      });
+      */
+    }
+
+    handleKeydown(event) {
+      const trigger = event.currentTarget;
+      
+      // Handle Enter and Space keys
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        this.handleToggle(event);
+      }
+      
+      // Handle arrow keys for navigation
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.navigateItems(trigger, event.key === 'ArrowDown');
+      }
+    }
+
+    navigateItems(currentTrigger, isDown) {
+      const triggers = Array.from(this.container.querySelectorAll('[data-faq-trigger]'));
+      const currentIndex = triggers.indexOf(currentTrigger);
+      
+      let nextIndex;
+      if (isDown) {
+        nextIndex = currentIndex === triggers.length - 1 ? 0 : currentIndex + 1;
+      } else {
+        nextIndex = currentIndex === 0 ? triggers.length - 1 : currentIndex - 1;
+      }
+      
+      triggers[nextIndex].focus();
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new FAQAccordion();
+  });
+
+  // Re-initialize if content is dynamically loaded
+  document.addEventListener('astro:page-load', () => {
+    new FAQAccordion();
+  });
+</script>

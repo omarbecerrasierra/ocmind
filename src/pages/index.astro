@@ -1,16 +1,258 @@
 ---
+/* EDITAR AQUÍ: Configuración de la página principal */
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import SocialProof from '../components/SocialProof.astro';
+import Pricing from '../components/Pricing.astro';
+import FAQ from '../components/islands/FAQ.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import MobileMenu from '../components/islands/MobileMenu.astro';
+import PricingToggle from '../components/islands/PricingToggle.astro';
 
+// Configuración SEO específica de la landing page
+const pageTitle = "OCMIND - Consultoría en IA, Marketing y Desarrollo Web";
+const pageDescription = "Impulsamos tu negocio con inteligencia artificial, marketing digital y desarrollo web. Consultoría estratégica, bots de WhatsApp y sitios e-commerce listos para vender. +5 años de experiencia en LatAm & USA.";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title={pageTitle} description={pageDescription}>
+  <!-- Mobile Menu Island (wraps Header) -->
+  <MobileMenu>
+    <Header />
+  </MobileMenu>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+    <Hero />
+
+    <!-- Social Proof Section -->
+    <SocialProof />
+
+    <!-- Services Section (ID for navigation) -->
+    <section class="services-anchor" id="servicios" aria-label="Navegación a servicios">
+      <!-- The services are highlighted in the Hero section -->
+      <!-- This anchor provides navigation target -->
+    </section>
+
+    <!-- Pricing Section with Interactive Toggle -->
+    <PricingToggle>
+      <Pricing />
+    </PricingToggle>
+
+    <!-- FAQ Section (Interactive Accordion) -->
+    <FAQ />
+
+    <!-- Contact Section -->
+    <Contact />
+  </main>
+
+  <!-- Footer -->
+  <Footer />
+
+  <!-- Accessibility and Performance Scripts -->
+  <script is:inline>
+    // Smooth scroll polyfill for older browsers
+    if (!('scrollBehavior' in document.documentElement.style)) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/gh/iamdustan/smoothscroll@master/smoothscroll.min.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    // Intersection Observer for animations
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements that should animate on scroll
+      document.addEventListener('DOMContentLoaded', () => {
+        const animatedElements = document.querySelectorAll(
+          '.pricing-card, .faq-item, .contact-method, .stat-card, .trust-badge'
+        );
+        animatedElements.forEach(el => observer.observe(el));
+      });
+    }
+
+    // Performance: Preload critical resources
+    const preloadLinks = [
+      { href: 'https://fonts.gstatic.com', rel: 'preconnect', crossorigin: 'anonymous' },
+    ];
+
+    preloadLinks.forEach(link => {
+      const linkEl = document.createElement('link');
+      Object.entries(link).forEach(([key, value]) => {
+        if (value !== undefined) {
+          linkEl.setAttribute(key, value);
+        }
+      });
+      document.head.appendChild(linkEl);
+    });
+
+    // Analytics placeholder (EDITAR AQUÍ para agregar Google Analytics, etc.)
+    // Example: gtag('config', 'GA_MEASUREMENT_ID');
+  </script>
+
+  <!-- Schema.org structured data for better SEO -->
+  <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "OCMIND - Consultoría en IA, Marketing y Desarrollo Web",
+      "description": "Landing page oficial de OCMIND. Servicios de consultoría en inteligencia artificial, marketing digital y desarrollo web para empresas en LatAm y USA.",
+      "url": "https://ocmind.com",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "OCMIND",
+        "description": "Consultoría estratégica en IA, Marketing Digital y Desarrollo Web",
+        "url": "https://ocmind.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+56-9-6456-7998",
+          "contactType": "customer service",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        "areaServed": ["Chile", "Argentina", "Colombia", "Venezuela", "Peru", "United States"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios OCMIND",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Consultoría en Inteligencia Artificial",
+                "description": "Análisis predictivos, visualización de datos con BI, Python, VS Code, SQL, Java, Google Colab"
+              }
+            },
+            {
+              "@type": "Offer", 
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Bots de WhatsApp y Redes Sociales",
+                "description": "Bots de respuesta automática para WhatsApp Business, Instagram, Facebook"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service", 
+                "name": "Desarrollo Web y E-commerce",
+                "description": "Sitios web personalizados con dominio integrado, carrito, inventario, medios de pago"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Marketing Digital",
+                "description": "Estrategias de marketing, análisis de mercado, campañas digitales"
+              }
+            }
+          ]
+        }
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://ocmind.com"
+          }
+        ]
+      }
+    }
+  </script>
+</Base>
+
+<style>
+  /* EDITAR AQUÍ: Estilos específicos de la landing page */
+  
+  /* Services anchor - invisible navigation target */
+  .services-anchor {
+    position: absolute;
+    top: -80px; /* Offset for fixed header */
+    visibility: hidden;
+  }
+
+  /* Ensure smooth transitions between sections */
+  main {
+    position: relative;
+  }
+
+  /* Loading states and performance optimizations */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  /* Critical above-the-fold styles */
+  @media (max-width: 768px) {
+    .services-anchor {
+      top: -60px; /* Smaller offset for mobile */
+    }
+  }
+
+  /* Print styles (accessibility) */
+  @media print {
+    .mobile-menu-island,
+    .pricing-toggle-island,
+    script {
+      display: none !important;
+    }
+    
+    body {
+      font-size: 12pt;
+      line-height: 1.4;
+      color: black;
+      background: white;
+    }
+    
+    .btn {
+      border: 1px solid black;
+      background: white;
+      color: black;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --muted: #cccccc;
+      --accent: #ffff00;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+    
+    .animate-fade-in-up {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

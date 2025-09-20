@@ -1,0 +1,543 @@
+---
+/* EDITAR AQUÍ: Información del footer y enlaces */
+const footerLinks = {
+  services: [
+    { href: "#servicios", label: "Consultoría IA" },
+    { href: "#servicios", label: "Marketing Digital" },
+    { href: "#servicios", label: "Desarrollo Web" },
+    { href: "#servicios", label: "E-commerce" },
+    { href: "#servicios", label: "Bots WhatsApp" },
+    { href: "#servicios", label: "Análisis de Datos" }
+  ],
+  company: [
+    { href: "#inicio", label: "Inicio" },
+    { href: "#planes", label: "Planes" },
+    { href: "#faq", label: "FAQ" },
+    { href: "#contacto", label: "Contacto" }
+  ],
+  legal: [
+    { href: "/privacidad", label: "Política de Privacidad" },
+    { href: "/terminos", label: "Términos de Servicio" },
+    { href: "/cookies", label: "Política de Cookies" }
+  ]
+};
+
+const socialLinks = [
+  {
+    name: "WhatsApp",
+    href: "https://wa.me/56964567998",
+    icon: "whatsapp",
+    ariaLabel: "Contactar por WhatsApp (abre en nueva ventana)"
+  },
+  {
+    name: "Instagram",
+    href: "https://instagram.com/ocmind.ai",
+    icon: "instagram", 
+    ariaLabel: "Seguir en Instagram (abre en nueva ventana)"
+  },
+  {
+    name: "Email",
+    href: "mailto:ocmindconsulting@gmail.com",
+    icon: "email",
+    ariaLabel: "Enviar email (abre cliente de correo)"
+  }
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <!-- Main Footer Content -->
+    <div class="footer-content">
+      <!-- Company Info -->
+      <div class="footer-section footer-brand">
+        <a href="/" class="footer-logo" aria-label="OCMIND - Inicio">
+          <svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="var(--accent)"/>
+            <path d="M8 16C8 11.5817 11.5817 8 16 8C20.4183 8 24 11.5817 24 16C24 20.4183 20.4183 24 16 24C11.5817 24 8 20.4183 8 16Z" fill="var(--bg)"/>
+            <path d="M12 16C12 13.7909 13.7909 12 16 12C18.2091 12 20 13.7909 20 16C20 18.2091 18.2091 20 16 20C13.7909 20 12 18.2091 12 16Z" fill="var(--accent)"/>
+          </svg>
+          <span class="footer-logo-text">OCMIND</span>
+        </a>
+        
+        <p class="footer-description">
+          Transformamos negocios con inteligencia artificial, marketing digital y desarrollo web. 
+          +5 años impulsando el crecimiento empresarial en LatAm & USA.
+        </p>
+
+        <div class="footer-social">
+          <h4 class="footer-social-title">Síguenos</h4>
+          <div class="social-links">
+            {socialLinks.map((social) => (
+              <a
+                href={social.href}
+                class="social-link"
+                target={social.href.startsWith('mailto:') ? '_self' : '_blank'}
+                rel={social.href.startsWith('mailto:') ? '' : 'noopener noreferrer'}
+                aria-label={social.ariaLabel}
+              >
+                {social.icon === 'whatsapp' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.473 3.297" fill="currentColor"/>
+                  </svg>
+                )}
+                {social.icon === 'instagram' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z" stroke="currentColor" stroke-width="2"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                )}
+                {social.icon === 'email' && (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                )}
+                <span class="sr-only">{social.name}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Services Links -->
+      <div class="footer-section">
+        <h4 class="footer-section-title">Servicios</h4>
+        <ul class="footer-links">
+          {footerLinks.services.map((link) => (
+            <li>
+              <a href={link.href} class="footer-link">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div class="footer-section">
+        <h4 class="footer-section-title">Empresa</h4>
+        <ul class="footer-links">
+          {footerLinks.company.map((link) => (
+            <li>
+              <a href={link.href} class="footer-link">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="footer-section">
+        <h4 class="footer-section-title">Contacto</h4>
+        <div class="footer-contact">
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22 16.92V19C22 20.1046 21.1046 21 20 21H19.92C10.08 21.46 2.54 13.92 3 4.08C3 2.97543 3.89543 2 4.92 2H7C8.1046 2 9 2.89543 9 4V6.5C9 7.32843 8.32843 8 7.5 8H6C6 12.4183 9.58172 16 14 16V14.5C14 13.6716 14.6716 13 15.5 13H18C19.1046 13 20 13.8954 20 15V16.92C20 17.4743 19.4743 18 18.92 18H18C17.4477 18 17 17.5523 17 17C17 16.4477 17.4477 16 18 16H18.92C19.4743 16 20 15.5257 20 14.92V13C20 12.4477 19.5523 12 19 12H16C15.4477 12 15 12.4477 15 13V15.5C15 16.3284 14.3284 17 13.5 17C8.25329 17 4 12.7467 4 7.5C4 6.67157 4.67157 6 5.5 6H8C8.55228 6 9 5.55228 9 5V3C9 2.44772 8.55228 2 8 2H5.08C4.52574 2 4 2.52574 4 3.08C3.56 11.84 10.16 18.44 18.92 18H19C20.1046 18 21 17.1046 21 16V14.08C21 13.5257 20.4743 13 19.92 13H19C18.4477 13 18 13.4477 18 14V14.92C18 15.4743 17.4743 16 16.92 16H16V14.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="https://wa.me/56964567998" target="_blank" rel="noopener noreferrer" class="footer-link">
+              +56 9 6456 7998
+            </a>
+          </div>
+          
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="mailto:ocmindconsulting@gmail.com" class="footer-link">
+              ocmindconsulting@gmail.com
+            </a>
+          </div>
+
+          <div class="contact-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="footer-text">
+              LatAm & USA
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="footer-cta">
+      <div class="cta-content">
+        <h3 class="cta-title">¿Listo para transformar tu negocio?</h3>
+        <p class="cta-text">Agenda una asesoría gratuita y descubre el potencial de tu empresa</p>
+        <a 
+          href="https://wa.me/56964567998?text=Hola,%20me%20gustaría%20agendar%20una%20asesoría%20gratuita"
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M8 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect width="18" height="18" x="3" y="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" rx="2"/>
+            <path d="M3 10H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 14H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 14H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 18H10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 18H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Agenda una asesoría gratis
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        <p>&copy; {currentYear} OCMIND. Todos los derechos reservados.</p>
+      </div>
+      
+      <div class="footer-legal">
+        <ul class="legal-links">
+          {footerLinks.legal.map((link, index) => (
+            <li>
+              <a href={link.href} class="legal-link">
+                {link.label}
+              </a>
+              {index < footerLinks.legal.length - 1 && <span class="separator">|</span>}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-credits">
+        <p class="credits-text">
+          Hecho con 
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="heart-icon">
+            <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.6417 1.5487 7.041 1.5487 8.5C1.5487 9.959 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7563 11.2728 22.0329 10.6053C22.3095 9.93789 22.4518 9.22248 22.4518 8.5C22.4518 7.77752 22.3095 7.06211 22.0329 6.39467C21.7563 5.72723 21.351 5.1208 20.84 4.61V4.61Z" fill="var(--accent)"/>
+          </svg>
+          en Chile
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--bg);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    position: relative;
+  }
+
+  .footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(245, 158, 11, 0.3) 50%, 
+      transparent);
+  }
+
+  /* Main Footer Content */
+  .footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: var(--space-16);
+    padding: var(--space-20) 0 var(--space-16);
+  }
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-brand {
+    max-width: 350px;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .footer-logo:hover {
+    color: var(--accent);
+  }
+
+  .footer-logo-text {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+  }
+
+  .footer-description {
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+  }
+
+  .footer-social-title {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-4);
+  }
+
+  .social-link {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(148, 163, 184, 0.1);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: var(--space-2);
+    color: var(--muted);
+    text-decoration: none;
+    transition: all var(--transition);
+  }
+
+  .social-link:hover,
+  .social-link:focus {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+  }
+
+  /* Section Titles */
+  .footer-section-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Links */
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: var(--space-3);
+  }
+
+  .footer-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+    transition: color var(--transition);
+  }
+
+  .footer-link:hover,
+  .footer-link:focus {
+    color: var(--accent);
+  }
+
+  /* Contact Info */
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .contact-item svg {
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .footer-text {
+    color: var(--muted);
+    font-size: var(--font-size-sm);
+  }
+
+  /* CTA Section */
+  .footer-cta {
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.1) 0%, 
+      rgba(37, 99, 235, 0.05) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: var(--radius);
+    padding: var(--space-12);
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .cta-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .cta-text {
+    color: var(--muted);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Footer Bottom */
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-8) 0;
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .footer-copyright p {
+    color: var(--muted);
+    font-size: var(--font-size-sm);
+    margin: 0;
+  }
+
+  .legal-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: var(--space-2);
+    align-items: center;
+  }
+
+  .legal-link {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: var(--font-size-xs);
+    transition: color var(--transition);
+  }
+
+  .legal-link:hover {
+    color: var(--accent);
+  }
+
+  .separator {
+    color: var(--muted);
+    margin: 0 var(--space-2);
+  }
+
+  .footer-credits {
+    display: flex;
+    align-items: center;
+  }
+
+  .credits-text {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--muted);
+    font-size: var(--font-size-xs);
+    margin: 0;
+  }
+
+  .heart-icon {
+    animation: heartbeat 2s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      padding: var(--space-16) 0 var(--space-12);
+    }
+
+    .footer-brand {
+      max-width: none;
+    }
+
+    .footer-cta {
+      padding: var(--space-8);
+      margin-bottom: var(--space-12);
+    }
+
+    .cta-title {
+      font-size: var(--font-size-xl);
+    }
+
+    .cta-text {
+      font-size: var(--font-size-base);
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--space-6);
+    }
+
+    .legal-links {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-content {
+      gap: var(--space-8);
+      padding: var(--space-12) 0 var(--space-8);
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+
+    .footer-contact {
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-item {
+      justify-content: center;
+    }
+
+    .footer-cta {
+      padding: var(--space-6);
+    }
+
+    .legal-links {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .separator {
+      display: none;
+    }
+  }
+</style>

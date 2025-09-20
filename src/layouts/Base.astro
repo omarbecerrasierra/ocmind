@@ -1,0 +1,157 @@
+---
+/* EDITAR AQUÍ: Configuración SEO y metadatos */
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = "OCMIND - Consultoría en IA, Marketing y Desarrollo Web",
+  description = "Impulsamos tu negocio con IA, Marketing y Web. Consultoría estratégica, bots de WhatsApp y sitios e-commerce listos para vender. +5 años de experiencia en LatAm & USA.",
+  image = "/og-image.jpg",
+  canonicalURL = Astro.url
+} = Astro.props;
+
+const siteTitle = title === "OCMIND - Consultoría en IA, Marketing y Desarrollo Web" ? title : `${title} | OCMIND`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{siteTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="consultoría IA, marketing digital, bots WhatsApp, desarrollo web, e-commerce, inteligencia artificial, big data, dashboards, análisis predictivos" />
+    <meta name="author" content="OCMIND Consulting" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={siteTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="OCMIND" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={siteTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    
+    <!-- WhatsApp Business -->
+    <meta property="business:contact_data:street_address" content="Chile" />
+    <meta property="business:contact_data:locality" content="Santiago" />
+    <meta property="business:contact_data:region" content="RM" />
+    <meta property="business:contact_data:country_name" content="Chile" />
+    <meta property="business:contact_data:phone_number" content="+56964567998" />
+    <meta property="business:contact_data:email" content="ocmindconsulting@gmail.com" />
+    
+    <!-- Preconnect para optimización -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OCMIND",
+        "alternateName": "OCMIND Consulting",
+        "url": "https://ocmind.com",
+        "logo": "https://ocmind.com/logo.png",
+        "description": "Consultoría estratégica en IA, Marketing Digital y Desarrollo Web",
+        "foundingDate": "2019",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+56-9-6456-7998",
+          "contactType": "customer service",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        "sameAs": [
+          "https://instagram.com/ocmind.ai",
+          "https://wa.me/56964567998"
+        ],
+        "areaServed": ["Chile", "Argentina", "Colombia", "Venezuela", "Peru", "United States"],
+        "serviceType": [
+          "Consultoría en Inteligencia Artificial",
+          "Marketing Digital",
+          "Desarrollo Web",
+          "E-commerce",
+          "Bots de WhatsApp",
+          "Análisis de Datos"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <slot />
+    
+    <!-- Scripts para islands -->
+    <script>
+      // Mejora la accesibilidad del foco del teclado
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+          document.body.classList.add('user-is-tabbing');
+        }
+      });
+      
+      document.addEventListener('mousedown', () => {
+        document.body.classList.remove('user-is-tabbing');
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import '../styles/vars.css';
+  
+  /* EDITAR AQUÍ: Estilos adicionales globales */
+  body.user-is-tabbing *:focus {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Animaciones sutiles */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
+  }
+  
+  /* Scroll suave para ancilas */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimización de carga de imágenes */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Mejora de legibilidad */
+  ::selection {
+    background-color: var(--accent);
+    color: var(--bg);
+  }
+</style>

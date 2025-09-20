@@ -1,0 +1,99 @@
+---
+// Island component for pricing toggle functionality
+---
+
+<div class="pricing-toggle-island" data-pricing-toggle-island>
+  <slot />
+</div>
+
+<script>
+  class PricingToggle {
+    private toggle: HTMLButtonElement | null = null;
+    private priceAmounts: NodeListOf<HTMLElement> | null = null;
+    private pricePeriods: NodeListOf<HTMLElement> | null = null;
+    private monthlyLabel: HTMLElement | null = null;
+    private annualLabel: HTMLElement | null = null;
+
+    constructor() {
+      this.init();
+    }
+
+    init(): void {
+      // Find elements
+      this.toggle = document.querySelector('[data-pricing-toggle]');
+      this.priceAmounts = document.querySelectorAll('.price-amount');
+      this.pricePeriods = document.querySelectorAll('.price-period');
+      this.monthlyLabel = document.getElementById('monthly-label');
+      this.annualLabel = document.getElementById('annual-label');
+
+      if (!this.toggle) return;
+
+      // Bind event listener
+      this.toggle.addEventListener('click', this.handleToggle.bind(this));
+      
+      // Initialize labels
+      this.updateLabels(false);
+    }
+
+    handleToggle(): void {
+      if (!this.toggle) return;
+
+      const isChecked = this.toggle.getAttribute('aria-checked') === 'true';
+      const newState = !isChecked;
+      
+      // Update toggle state
+      this.toggle.setAttribute('aria-checked', newState.toString());
+      
+      // Update labels
+      this.updateLabels(newState);
+      
+      // Update prices
+      this.updatePrices(newState);
+    }
+
+    updateLabels(isAnnual: boolean): void {
+      if (this.monthlyLabel && this.annualLabel) {
+        this.monthlyLabel.classList.toggle('active', !isAnnual);
+        this.annualLabel.classList.toggle('active', isAnnual);
+      }
+    }
+
+    updatePrices(isAnnual: boolean): void {
+      // Update price amounts
+      this.priceAmounts?.forEach((amount) => {
+        const monthlyPrice = amount.getAttribute('data-price-monthly');
+        const annualPrice = amount.getAttribute('data-price-annual');
+        
+        if (monthlyPrice && annualPrice) {
+          amount.textContent = isAnnual ? annualPrice : monthlyPrice;
+        }
+      });
+
+      // Update price periods
+      this.pricePeriods?.forEach((period) => {
+        const monthlyPeriod = period.getAttribute('data-period-monthly');
+        const annualPeriod = period.getAttribute('data-period-annual');
+        
+        if (monthlyPeriod && annualPeriod) {
+          period.textContent = isAnnual ? annualPeriod : monthlyPeriod;
+        }
+      });
+    }
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new PricingToggle();
+  });
+
+  // Re-initialize for Astro navigation
+  document.addEventListener('astro:page-load', () => {
+    new PricingToggle();
+  });
+</script>
+
+<style>
+  .pricing-toggle-island {
+    display: contents;
+  }
+</style>

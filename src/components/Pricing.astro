@@ -1,0 +1,512 @@
+---
+/* EDITAR AQUÍ: Planes y precios de OCMIND */
+const plans = [
+  {
+    name: "Start",
+    description: "Perfecto para empezar con IA",
+    featured: false,
+    features: [
+      "Bot de respuesta automática (WhatsApp Business)",
+      "Implementación de Facebook, Instagram, WhatsApp Business",
+      "Administración y publicación de contenido",
+      "Soporte básico por email"
+    ],
+    cta: {
+      text: "Solicitar cotización",
+      href: "https://wa.me/56964567998?text=Hola,%20me%20interesa%20el%20plan%20Start",
+      primary: false
+    }
+  },
+  {
+    name: "Growth",
+    description: "El más popular para crecer",
+    featured: true,
+    features: [
+      "Bot de respuesta automática a elección",
+      "Implementación de Facebook, Instagram, WhatsApp Business, TikTok",
+      "Administración y publicación de contenido",
+      "1 campaña de pago a elección",
+      "1 video con creador de contenido (a elección)",
+      "Soporte prioritario por WhatsApp"
+    ],
+    cta: {
+      text: "Quiero este plan",
+      href: "https://wa.me/56964567998?text=Hola,%20me%20interesa%20el%20plan%20Growth",
+      primary: true
+    }
+  },
+  {
+    name: "Pro",
+    description: "Solución completa empresarial",
+    featured: false,
+    features: [
+      "Bot de respuesta automática para WhatsApp Business, Facebook, Instagram",
+      "Implementación de Facebook, Instagram, WhatsApp Business, TikTok",
+      "Administración y publicación de contenido",
+      "3 campañas de pago a elección",
+      "2 videos con creador de contenido (a elección)",
+      "Soporte 24/7 dedicado",
+      "Consultoría estratégica mensual"
+    ],
+    cta: {
+      text: "Hablar con un asesor",
+      href: "https://wa.me/56964567998?text=Hola,%20me%20interesa%20el%20plan%20Pro%20y%20una%20consultoría",
+      primary: false
+    }
+  }
+];
+---
+
+<section class="pricing" id="planes">
+  <div class="container">
+    <div class="pricing-header">
+      <h2 class="section-title">
+        Planes diseñados para tu crecimiento
+      </h2>
+      <p class="section-subtitle">
+        Elige la solución que mejor se adapte a las necesidades de tu negocio. Todos los planes incluyen implementación y soporte.
+      </p>
+    </div>
+
+    <div class="pricing-toggle">
+      <span class="toggle-label" id="monthly-label">Implementación</span>
+      <button 
+        class="toggle-button"
+        role="switch"
+        aria-checked="false"
+        aria-labelledby="monthly-label annual-label"
+        aria-describedby="pricing-toggle-description"
+        data-pricing-toggle
+      >
+        <span class="toggle-slider"></span>
+      </button>
+      <span class="toggle-label" id="annual-label">Implementación + Mantenimiento</span>
+      <div class="toggle-badge">Ahorra 20%</div>
+    </div>
+    
+    <p class="sr-only" id="pricing-toggle-description">
+      Cambiar entre precios de implementación únicos o planes con mantenimiento incluido
+    </p>
+
+    <div class="pricing-grid">
+      {plans.map((plan, index) => (
+        <div 
+          class={`pricing-card ${plan.featured ? 'featured' : ''}`}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          {plan.featured && (
+            <div class="featured-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z" fill="currentColor"/>
+              </svg>
+              Más Popular
+            </div>
+          )}
+          
+          <div class="plan-header">
+            <h3 class="plan-name">{plan.name}</h3>
+            <p class="plan-description">{plan.description}</p>
+            
+            <div class="plan-price">
+              <div class="price-display">
+                <span class="price-amount" data-price-monthly="Cotización" data-price-annual="Desde $299">
+                  Cotización
+                </span>
+                <span class="price-period" data-period-monthly="personalizada" data-period-annual="/mes">
+                  personalizada
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="plan-features">
+            <h4 class="features-title">Incluye:</h4>
+            <ul class="features-list">
+              {plan.features.map((feature) => (
+                <li class="feature-item">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="plan-cta">
+            <a 
+              href={plan.cta.href}
+              class={`btn ${plan.cta.primary ? 'btn-primary' : 'btn-secondary'} btn-full`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${plan.cta.text} - Plan ${plan.name} (abre WhatsApp)`}
+            >
+              {plan.cta.text}
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="pricing-footer">
+      <p class="pricing-note">
+        * Todos los precios son en USD. Los planes incluyen configuración inicial y capacitación.
+        <br>
+        <strong>¿Necesitas algo personalizado?</strong> 
+        <a href="https://wa.me/56964567998?text=Hola,%20necesito%20una%20solución%20personalizada" target="_blank" rel="noopener noreferrer">
+          Contáctanos para una propuesta a medida
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing {
+    padding: var(--space-20) 0;
+    background: linear-gradient(180deg, 
+      transparent 0%, 
+      rgba(148, 163, 184, 0.02) 50%, 
+      transparent 100%);
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title {
+    font-size: var(--font-size-3xl);
+    color: var(--text);
+    margin-bottom: var(--space-6);
+  }
+
+  .section-subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* Pricing Toggle */
+  .pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-16);
+    position: relative;
+  }
+
+  .toggle-label {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    color: var(--muted);
+    transition: color var(--transition);
+  }
+
+  .toggle-label.active {
+    color: var(--text);
+  }
+
+  .toggle-button {
+    position: relative;
+    width: 56px;
+    height: 28px;
+    background-color: rgba(148, 163, 184, 0.2);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .toggle-button[aria-checked="true"] {
+    background-color: var(--accent);
+  }
+
+  .toggle-slider {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: var(--text);  
+    border-radius: 50%;
+    transition: transform var(--transition);
+  }
+
+  .toggle-button[aria-checked="true"] .toggle-slider {
+    transform: translateX(28px);
+  }
+
+  .toggle-badge {
+    position: absolute;
+    top: -8px;
+    right: -20px;
+    background-color: var(--accent);
+    color: var(--bg);
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--space-2);
+    white-space: nowrap;
+  }
+
+  /* Pricing Grid */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-12);
+  }
+
+  .pricing-card {
+    position: relative;
+    background-color: rgba(148, 163, 184, 0.03);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    border-radius: var(--radius);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all var(--transition);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(245, 158, 11, 0.3);
+    box-shadow: var(--shadow);
+  }
+
+  .pricing-card.featured {
+    border-color: var(--accent);
+    background: linear-gradient(135deg, 
+      rgba(245, 158, 11, 0.05) 0%, 
+      rgba(245, 158, 11, 0.02) 100%);
+    transform: scale(1.05);
+  }
+
+  .pricing-card.featured:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+
+  .featured-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent);
+    color: var(--bg);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .plan-header {
+    text-align: center;
+    margin-bottom: var(--space-8);
+  }
+
+  .plan-name {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-2);
+  }
+
+  .plan-description {
+    color: var(--muted);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--space-6);
+  }
+
+  .plan-price {
+    margin-bottom: var(--space-6);
+  }
+
+  .price-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .price-amount {
+    font-size: var(--font-size-3xl);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .price-period {
+    font-size: var(--font-size-base);
+    color: var(--muted);
+  }
+
+  /* Features */
+  .plan-features {
+    flex: 1;
+    margin-bottom: var(--space-8);
+  }
+
+  .features-title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: var(--space-4);
+  }
+
+  .features-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-sm);
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .feature-item svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  /* CTA */
+  .plan-cta {
+    margin-top: auto;
+  }
+
+  .btn-full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .pricing-footer {
+    text-align: center;
+    padding-top: var(--space-8);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .pricing-note {
+    color: var(--muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .pricing-note a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .pricing-note a:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .pricing {
+      padding: var(--space-16) 0;
+    }
+
+    .section-title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .pricing-toggle {
+      flex-direction: column;
+      gap: var(--space-3);
+      margin-bottom: var(--space-12);
+    }
+
+    .toggle-badge {
+      position: static;
+      margin-top: var(--space-2);
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+
+    .pricing-card.featured {
+      transform: none;
+    }
+
+    .pricing-card.featured:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pricing-card {
+      padding: var(--space-6);
+    }
+
+    .plan-name {
+      font-size: var(--font-size-xl);
+    }
+
+    .price-amount {
+      font-size: var(--font-size-2xl);
+    }
+  }
+</style>
+
+<script>
+  // This will be moved to an island component later
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('[data-pricing-toggle]');
+    const priceAmounts = document.querySelectorAll('.price-amount');
+    const pricePeriods = document.querySelectorAll('.price-period');
+    const monthlyLabel = document.getElementById('monthly-label');
+    const annualLabel = document.getElementById('annual-label');
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const isChecked = toggle.getAttribute('aria-checked') === 'true';
+        toggle.setAttribute('aria-checked', (!isChecked).toString());
+
+        // Update labels
+        if (monthlyLabel && annualLabel) {
+          monthlyLabel.classList.toggle('active', isChecked);
+          annualLabel.classList.toggle('active', !isChecked);
+        }
+
+        // Update prices
+        priceAmounts.forEach(amount => {
+          const monthlyPrice = amount.getAttribute('data-price-monthly');
+          const annualPrice = amount.getAttribute('data-price-annual');
+          amount.textContent = isChecked ? monthlyPrice : annualPrice;
+        });
+
+        pricePeriods.forEach(period => {
+          const monthlyPeriod = period.getAttribute('data-period-monthly');
+          const annualPeriod = period.getAttribute('data-period-annual');
+          period.textContent = isChecked ? monthlyPeriod : annualPeriod;
+        });
+      });
+    }
+  });
+</script>
